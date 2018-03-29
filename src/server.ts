@@ -17,6 +17,12 @@ app.get("/message", async (_req, res) => {
   res.send({ msg })
 })
 
+app.get("/auction")
+app.post("/auction")
+
+app.post("/auction/bid")
+app.get("/auction/bid")
+
 app.post("/message", async (req, res) => {
   const { msg } = req.body
   if (!!msg) {
