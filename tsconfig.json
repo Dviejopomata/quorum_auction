@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true,
+    "lib": ["es2015", "dom"],
+    "inlineSourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "strict": false,
+    "alwaysStrict": false,
+    "noImplicitUseStrict": true,
+    "paths": {
+      "src/*": ["src/*"],
+      "cmd/*": ["cmd/*"],
+      "pkg/*": ["pkg/*"],
+      "deploy/*": ["deploy/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
