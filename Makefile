@@ -15,3 +15,6 @@ deploy_contracts: compile_contracts
 
 deploy_k8s: push
 	yarn deploy:k8s -r gt-staging-blockchain -o ./build_chart
+
+push:
+	git add . && git commit -m "update" && git push
