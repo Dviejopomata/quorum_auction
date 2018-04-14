@@ -13,6 +13,10 @@
     "@types/express" "*"
     "@types/node" "*"
 
+"@types/config@^0.0.34":
+  version "0.0.34"
+  resolved "https://npm.nextagilesoft.com/@types%2fconfig/-/config-0.0.34.tgz#123f91bdb5afdd702294b9de9ca04d9ea11137b0"
+
 "@types/events@*":
   version "1.2.0"
   resolved "https://npm.nextagilesoft.com/@types%2fevents/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
@@ -658,6 +662,13 @@ component-emitter@^1.2.0, component-emitter@^1.2.1:
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://npm.nextagilesoft.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
+
+config@^1.30.0:
+  version "1.30.0"
+  resolved "https://npm.nextagilesoft.com/config/-/config-1.30.0.tgz#1d60a9f35348a13c175798d384e81a5a16c3ba6e"
+  dependencies:
+    json5 "0.4.0"
+    os-homedir "1.0.2"
 
 configstore@^3.0.0:
   version "3.1.2"
@@ -1973,6 +1984,10 @@ js-sha3@^0.3.1:
   version "0.3.1"
   resolved "https://npm.nextagilesoft.com/js-sha3/-/js-sha3-0.3.1.tgz#86122802142f0828502a0d1dee1d95e253bb0243"
 
+js-sha3@^0.7.0:
+  version "0.7.0"
+  resolved "https://npm.nextagilesoft.com/js-sha3/-/js-sha3-0.7.0.tgz#0a5c57b36f79882573b2d84051f8bb85dd1bd63a"
+
 js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://npm.nextagilesoft.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -2005,6 +2020,10 @@ json-stable-stringify@^1.0.1:
 json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://npm.nextagilesoft.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
+
+json5@0.4.0:
+  version "0.4.0"
+  resolved "https://npm.nextagilesoft.com/json5/-/json5-0.4.0.tgz#054352e4c4c80c86c0923877d449de176a732c8d"
 
 jsonfile@^2.1.0:
   version "2.4.0"
@@ -2500,7 +2519,7 @@ ora@^0.2.3:
     cli-spinners "^0.1.2"
     object-assign "^4.0.1"
 
-os-homedir@^1.0.0:
+os-homedir@1.0.2, os-homedir@^1.0.0:
   version "1.0.2"
   resolved "https://npm.nextagilesoft.com/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
 

@@ -1,4 +1,4 @@
-import app = require("src/server")
+import app = require("src/api")
 const port = process.env.PORT || 9500
 const instance = app.listen(port, () => {
   const { address } = instance.address()

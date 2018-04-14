@@ -4,13 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_PATH=. ts-node ./cmd/server.ts",
+    "start": "NODE_PATH=. node --inspect=7800 -r ts-node/register ./cmd/server.ts",
+    "dev":
+      "NODE_PATH=. nodemon --inspect=7800 -r ts-node/register ./cmd/server.ts",
     "watch": "export NODE_PATH=.&& nodemon --exec ts-node ./cmd/server.ts",
     "deploy:contracts": "NODE_PATH=. ts-node ./cmd/deploy.ts",
     "deploy:k8s": "ts-node ./deploy/deploy.ts"
   },
   "dependencies": {
     "@types/body-parser": "^1.16.8",
+    "@types/config": "^0.0.34",
     "@types/express": "^4.11.1",
     "@types/fs-extra-promise": "^1.0.4",
     "@types/node": "^9.6.1",
@@ -18,9 +21,11 @@
     "@types/tape": "^4.2.32",
     "@types/yargs": "^11.0.0",
     "body-parser": "^1.18.2",
+    "config": "^1.30.0",
     "express": "^4.16.3",
     "fs-extra-promise": "^1.0.1",
     "helm-docker-builder": "dviejopomata/helm-docker-builder",
+    "js-sha3": "^0.7.0",
     "kubernetes-client": "^5.1.0",
     "supertest": "^3.0.0",
     "tape": "^4.9.0",
