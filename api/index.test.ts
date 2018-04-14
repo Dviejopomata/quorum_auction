@@ -1,4 +1,4 @@
-import server = require("./server")
+import server = require(".")
 import supertest = require("supertest")
 import test = require("tape")
 const setup = () => {
