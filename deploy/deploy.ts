@@ -119,6 +119,57 @@ async function main() {
   await BuildAndPushImages(images)
 
   const globalEnv = []
+
+  const proxyHost = `blockchain-${subdomain}.${domain}`
+  const serverChart = new Chart(
+    "blockchain-node1",
+    baseChart,
+    {
+      pullSecrets: [pullSecret],
+      replicaCount: 1,
+      ports: {
+        http: 22000,
+        ws: 26000,
+      },
+
+      liveness: "/ping",
+      fullnameOverride: "blockchain-node1",
+      env: [...globalEnv],
+      image: {
+        repository: serverImage.repository,
+        tag: serverImage.getVersion(),
+        pullPolicy: "Always",
+      },
+      service: {
+        type: "ClusterIP",
+        port: 80,
+        ports: {
+          ws: 10000,
+        },
+      },
+      ingress: {
+        enabled: true,
+        annotations: {},
+        hosts: [proxyHost],
+        tls: [
+          {
+            hosts: [proxyHost],
+          },
+        ],
+      },
+      resources: {},
+      nodeSelector: {},
+      tolerations: [],
+      affinity: {},
+    },
+    {
+      apiVersion: "v1",
+      appVersion: "1.0",
+      description: "blockchain-node1",
+      name: "blockchain-node1",
+      version: "0.1.0",
+    },
+  )
   const apiHost = `${subdomain}.${domain}`
   const apiChart = new Chart(
     "api",
@@ -132,7 +183,12 @@ async function main() {
 
       liveness: "/ping",
       fullnameOverride: "master",
-      env: [...globalEnv, { name: "NODE_ENV", value: "production" }],
+      env: [
+        ...globalEnv,
+        { name: "WS_QUORUM_HOST", value: `ws://${serverChart.name}:10000` },
+        { name: "HTTP_QUORUM_HOST", value: `http://${serverChart.name}` },
+        { name: "NODE_ENV", value: "production" },
+      ],
       image: {
         repository: apiImage.repository,
         tag: apiImage.getVersion(),
@@ -165,54 +221,6 @@ async function main() {
       version: "0.1.0",
     },
   )
-
-  const proxyHost = `blockchain-${subdomain}.${domain}`
-  const serverChart = new Chart(
-    "blockchain-node1",
-    baseChart,
-    {
-      pullSecrets: [pullSecret],
-      replicaCount: 1,
-      ports: {
-        http: 22000,
-      },
-
-      liveness: "/ping",
-      fullnameOverride: "blockchain-node1",
-      env: [...globalEnv],
-      image: {
-        repository: serverImage.repository,
-        tag: serverImage.getVersion(),
-        pullPolicy: "Always",
-      },
-      service: {
-        type: "ClusterIP",
-        port: 80,
-      },
-      ingress: {
-        enabled: true,
-        annotations: {},
-        hosts: [proxyHost],
-        tls: [
-          {
-            hosts: [proxyHost],
-          },
-        ],
-      },
-      resources: {},
-      nodeSelector: {},
-      tolerations: [],
-      affinity: {},
-    },
-    {
-      apiVersion: "v1",
-      appVersion: "1.0",
-      description: "blockchain-node1",
-      name: "blockchain-node1",
-      version: "0.1.0",
-    },
-  )
-
   const rootChart = new Chart(
     "root",
     emptyChart,

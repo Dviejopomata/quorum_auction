@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_PATH=. node --inspect=7800 -r ts-node/register ./cmd/server.ts",
+    "start":
+      "NODE_PATH=. node --inspect=7800 -r ts-node/register ./cmd/server.ts",
     "dev":
       "NODE_PATH=. nodemon --inspect=7800 -r ts-node/register ./cmd/server.ts",
     "watch": "export NODE_PATH=.&& nodemon --exec ts-node ./cmd/server.ts",

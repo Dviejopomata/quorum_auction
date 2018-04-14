@@ -1,6 +1,6 @@
 import fs = require("fs-extra-promise")
 import path = require("path")
-const Web3 = require("web3")
+
 export const getAbiBin = async (contractName: string) => {
   const distDir = path.join(__dirname, "..", "dist")
   const abi = await fs.readJsonAsync(path.join(distDir, `${contractName}.abi`))
@@ -10,10 +10,7 @@ export const getAbiBin = async (contractName: string) => {
   return { abi, bytecode }
 }
 
-export const buildContract = async (
-  destDir: string,
-  contractName: string,
-) => {
+export const buildContract = async (destDir: string, contractName: string) => {
   const { abi, bytecode } = await getAbiBin(contractName)
   const addressPath = path.join(destDir, `${contractName}.json`)
   await fs.mkdirpAsync(path.dirname(addressPath))

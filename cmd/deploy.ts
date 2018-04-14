@@ -11,7 +11,6 @@ async function main() {
     Date.now() + 1000 * 60 * 60 * 10, // 10 horas
     account,
   ])
-  await buildContract(destDir, "BlindAuction")
   await buildContract(destDir, "SimpleAuction")
 }
 

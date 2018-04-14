@@ -9,6 +9,7 @@ const blockchainConfig = config.get<{
   ws: string
 }>("blockchain")
 const { account } = blockchainConfig
+console.log(`Blockchainconfig`, blockchainConfig);
 
 const { abi, options: { address } } = require("../build/address/FactoryAuction")
 const contract = new web3.eth.Contract(abi, address)

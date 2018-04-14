@@ -11,19 +11,19 @@ objects = FactoryAuction
 all: $(objects)
 
 compile_contracts:
-	# truffle compile
 	rm -rf ./dist
-	solc ./contracts/BlindAuction.sol  -o ./dist --bin --abi
 	solc ./contracts/FactoryAuction.sol  -o ./dist --bin --abi
-	# solc ./contracts/HelloWorld.sol  -o ./dist --bin --abi
 
 deploy_contracts: compile_contracts
 	yarn deploy:contracts
 
-deploy_k8s: push
+build_local: push
 	yarn deploy:k8s -r gt-staging-blockchain -o ./build_chart
 
-push:
+deploy_local: build_local
+	helm ls | grep gt-staging-blockchain  > /dev/null && helm upgrade gt-staging-blockchain -f build_chart/values.yaml ./build_chart || helm install --name gt-staging-blockchain -f build_chart/values.yaml ./build_chart
+
+push_git:
 	git add . && git commit -m "update" && git push
 
 # publich_local:
